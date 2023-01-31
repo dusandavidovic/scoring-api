@@ -1,4 +1,7 @@
 import client from "./client";
+import mapper from "../mapper/mapData";
+import saveData from "../localFileApi/localFiles";
+import { processFunction } from "../interface";
 
 class ApiService {
   formName = "";
@@ -9,12 +12,23 @@ class ApiService {
   constructor(formName: string) {
     this.formName = formName;
     this.getFormData().then((result) => {
-      console.log(result.Entries);
+      //console.log(result.Entries);
       this.data.entries = result.Entries;
+      const newData = mapper.mapProcess1(
+        result.Entries,
+        saveData as unknown as processFunction
+      );
+      // const params: IProcess = {
+      //   data: result.Entries,
+      //   processHandler: saveData,
+      // };
+      // const newData = mapper.mapProcess(params);
+      //const newData = mapper.mapTest(result.Entries);
+      console.log(newData);
     });
-    console.log("Const 1", this.data.fields);
-    this.getFormFields();
-    console.log("Const 2", this.data.entries);
+    // console.log("Const 1", this.data.fields);
+    // this.getFormFields();
+    // console.log("Const 2", this.data.fields);
   }
 
   getEntries() {
@@ -56,7 +70,7 @@ class ApiService {
 
 export function getApiService(formName: string) {
   const instance = new ApiService(formName);
-  console.log(instance.getEntries());
+  //console.log(instance.getEntries());
   return instance;
 }
 
