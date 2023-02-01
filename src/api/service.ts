@@ -1,7 +1,7 @@
 import client from "./client";
 import mapper from "../mapper/mapData";
 import local from "../localFileApi/localFiles";
-import { processFunction, IProcess } from "../interface";
+import { IProcess } from "../interface";
 
 class ApiService {
   formName = "";
