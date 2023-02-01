@@ -20,7 +20,7 @@ function saveData(data: string): void {
 
 const getFileName = (parm1: string, parm2: string): string => {
   // parm1.parm2.timestamp.txt
-  const ts = dayjs().format("YYYYMMDDhhmmdd");
+  const ts = dayjs().format("YYYYMMDDhhmmss");
   console.log(ts);
 
   return `${PATH}${parm1}.${parm2}.${ts}.txt`;
