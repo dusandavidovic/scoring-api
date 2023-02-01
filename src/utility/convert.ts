@@ -1,5 +1,6 @@
-import { json2csv } from "json-2-csv";
+// import { json2csv } from "json-2-csv";
 import { IProcess } from "../interface";
+import * as converter from "json-2-csv";
 
 // json2csv options
 const options = {
@@ -13,13 +14,13 @@ const options = {
   excelBOM: true,
   trimHeaderValues: true,
   trimFieldValues: true,
-  keys: [
-    //"Make",
-    // "Model",
-    // "Year",
-    // "Specifications.Mileage",
-    // "Specifications.Trim",
-  ],
+  //keys: [
+  //"Make",
+  // "Model",
+  // "Year",
+  // "Specifications.Mileage",
+  // "Specifications.Trim",
+  //],
 };
 
 const convert2CSV = ({ data, callback }: IProcess): string => {
@@ -33,7 +34,7 @@ const convert2CSV = ({ data, callback }: IProcess): string => {
     console.log(myCsv);
   };
 
-  json2csv(data, json2csvCallback, options);
+  converter.json2csv(data, json2csvCallback, options);
   return myCsv;
 };
 

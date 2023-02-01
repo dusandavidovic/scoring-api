@@ -1,5 +1,6 @@
-import convert2CSV from "../utility/convert";
+// import { convert2CSV, data } from "../utility/convert";
 import { IResult, IProcess, processFunction } from "../interface";
+import convert2CSV from "../utility/convert";
 
 const columns = ["First Name", "Last Name"];
 
@@ -13,18 +14,15 @@ const mapProcess1 = (
 
 const mapProcess = (props: IProcess): string | void => {
   const { data, callback } = props;
-  console.log("mapProcess_Props", props);
-  console.log("mapProcess_DATA", props.data);
-  console.log("mapProcess_callback", props.callback);
-  console.log("mapProcess_data", props.data);
-  return "Done from mapProcess";
+
   const result = mapTest(data);
   const parm: IProcess = {
     data: result,
     callback: callback,
   };
   const csv: string = convert2CSV(parm);
-
+  // 4const aaa = convert2CSV(parm);
+  console.log("mapProcess", csv);
   //if (processHandler) processHandler(csv);
 };
 

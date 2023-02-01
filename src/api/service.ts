@@ -1,7 +1,7 @@
 import client from "./client";
 import mapper from "../mapper/mapData";
-import saveData from "../localFileApi/localFiles";
-//import { processFunction } from "../interface";
+import local from "../localFileApi/localFiles";
+import { processFunction, IProcess } from "../interface";
 
 class ApiService {
   formName = "";
@@ -14,12 +14,12 @@ class ApiService {
     this.getFormData().then((result) => {
       //this.data.entries = result.Entries;
       //const newData = mapper.mapProcess1(result.Entries, saveData);
-      // const params: IProcess = {
-      //   data: result.Entries,
-      //   callback: saveData,
-      // };
-      // const newData = mapper.mapProcess(params);
-      const newData = mapper.mapProcess(result.Entries);
+      const params: IProcess = {
+        data: result.Entries,
+        callback: local.saveData,
+      };
+      const newData = mapper.mapProcess(params);
+      //const newData = mapper.mapProcess(result.Entries, local.saveData);
       //const newData1 = mapper.mapTest(result.Entries);
       console.log(newData);
     });

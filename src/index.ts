@@ -1,10 +1,4 @@
 import { getApiService } from "./api/service";
-import util from "./utility/sleep";
-
-interface ApiData {
-  entries: [];
-  fields: [];
-}
 
 const apiInstance = getApiService("test01");
 //console.log("apiInstance1", apiInstance);
