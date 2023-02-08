@@ -1,13 +1,7 @@
 import * as fs from "fs";
 import dayjs from "dayjs";
 
-// const myText = "Hi!\r\n";
-// fs.writeFileSync("D:/BHYC/data/foo.txt", myText);
-
-// const data = fs.readFileSync("D:/BHYC/data/foo.txt", "utf-8");
-// console.log(data);
-
-const PATH: string = "D:/BHYC/data/";
+const PATH: string = "C:/AA_CODE/data/";
 
 function saveData(data: string): void {
   const fileName = getFileName("foo", "test");
