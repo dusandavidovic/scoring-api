@@ -1,26 +1,48 @@
-const DATA: { name: string }[] = [{ name: "Andre" }, { name: "John" }];
+import readline from "node:readline";
 
-type processFunction = (content: string) => void;
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-function callback(arg: string): void {
-  console.log("from callback", arg);
-}
+let savedAnswer;
 
-interface IProcess {
-  data: object[];
-  callback: processFunction;
-}
+rl.setPrompt("Which programming language do you prefer? ");
+rl.prompt();
 
-function test01(props: IProcess): void {
-  console.log("props", props);
-  props.data?.forEach((val: any, index) => {
-    console.log(val.name);
-    // const aaa = val.name;
-    const aaa = val["name"];
-    callback("Hello world " + index);
-  });
-}
+rl.on("line", (answer) => {
+  savedAnswer = answer;
+  console.log(`Your preferred language is ${savedAnswer}`);
+  rl.close();
+});
 
-//console.log(test01);
+console.log("savedAnswer", savedAnswer);
 
-test01({ data: DATA, callback: callback });
+// const aaa = "";
+// getAnswer("What is your favorite language", answerCallback);
+
+// This code is sample how to wait for callback to be executed before continue
+//initialize a global var to control the callback state
+// var callbackCount = 0;
+// //call the function that has a callback
+// someObj.executeCallback(function () {
+//     callbackCount++;
+//     runOtherCode();
+// });
+// someObj2.executeCallback(function () {
+//     callbackCount++;
+//     runOtherCode();
+// });
+
+// //call function that has to wait
+// continueExec();
+
+// function continueExec() {
+//     //here is the trick, wait until var callbackCount is set number of callback functions
+//     if (callbackCount < 2) {
+//         setTimeout(continueExec, 1000);
+//         return;
+//     }
+//     //Finally, do what you need
+//     doSomeThing();
+// }

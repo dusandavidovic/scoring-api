@@ -1,12 +1,14 @@
 import * as fs from "fs";
 import dayjs from "dayjs";
+import os from "os";
 
-// const myText = "Hi!\r\n";
-// fs.writeFileSync("D:/BHYC/data/foo.txt", myText);
-
-// const data = fs.readFileSync("D:/BHYC/data/foo.txt", "utf-8");
-// console.log(data);
-
+const getPath = () => {
+  if (os.hostname() === "Mirage") {
+    return "D:/BHYC/data/";
+  } else {
+    return "C:/AA_CODE/data";
+  }
+};
 const PATH: string = "D:/BHYC/data/";
 
 function saveData(data: string): void {
@@ -14,7 +16,7 @@ function saveData(data: string): void {
   if (data) {
     const content = data as unknown as NodeJS.ArrayBufferView;
     writeData(fileName, content);
-    console.log("Write to file completed");
+    console.log("Write to file", fileName, "is completed.");
   }
 }
 
@@ -23,7 +25,7 @@ const getFileName = (parm1: string, parm2: string): string => {
   const ts = dayjs().format("YYYYMMDDhhmmss");
   console.log(ts);
 
-  return `${PATH}${parm1}.${parm2}.${ts}.txt`;
+  return `${getPath()}${parm1}.${parm2}.${ts}.txt`;
 };
 
 function writeData<Type>(
