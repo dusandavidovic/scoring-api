@@ -4,6 +4,7 @@ import local from "../localFileApi/localFiles";
 import { IProcess } from "../interface";
 
 class ApiService {
+  userId = "";
   formName = "";
   data = {
     entries: [],
@@ -19,13 +20,8 @@ class ApiService {
         callback: local.saveData,
       };
       const newData = mapper.mapProcess(params);
-      //const newData = mapper.mapProcess(result.Entries, local.saveData);
-      //const newData1 = mapper.mapTest(result.Entries);
       console.log(newData);
     });
-    // console.log("Const 1", this.data.fields);
-    // this.getFormFields();
-    // console.log("Const 2", this.data.fields);
   }
 
   // getEntries() {
@@ -62,6 +58,13 @@ class ApiService {
     } catch (error) {
       console.log("getFormFields", error);
     }
+  }
+
+  public setUserId(id: string) {
+    this.userId = id;
+  }
+  public getUserId(): string {
+    return this.userId;
   }
 }
 
