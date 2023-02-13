@@ -16,18 +16,18 @@ interface BasicAuth {
 }
 
 const bhycScorer: Wufoo = {
-  accessId: "AXLK-1Q4V-GMTC-UETL",
+  accessId: "Y3VO-26SD-XJBC-RBO4",
   password: "anyPassword",
-  subdomain: "bhyctest",
+  subdomain: "bhycadmin",
   format: "json",
   form: [
     {
-      name: "test01",
-      hash: "z2w7y1v0tpzni8",
+      name: "series",
+      hash: "m14y5e3f0vu09cw",
     },
     {
-      name: "test02",
-      hash: "a2w7y1v0tpzni8",
+      name: "rocks",
+      hash: "q2xsuyp0ia1b0w",
     },
   ],
 };
