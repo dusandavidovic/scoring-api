@@ -3,7 +3,7 @@ import { IProcess, Entry } from "../interface";
 import convert2CSV from "../utility/convert";
 
 const mapProcess = (props: IProcess): string | void => {
-  const { data, callback } = props;
+  const { data, callback, options } = props;
 
   const result: Entry[] = mapEntries(data as []);
   //console.log("mapProcess", result);
@@ -11,6 +11,7 @@ const mapProcess = (props: IProcess): string | void => {
   const parm: IProcess = {
     data: result as Entry[],
     callback: callback,
+    options: options,
   };
   const csv: string = convert2CSV(parm);
   // console.log("mapProcess", csv);

@@ -1,4 +1,5 @@
 export interface IResult {
+import default from './utility/sleep';
   firstName: string;
   lastName: string;
 }
@@ -32,6 +33,12 @@ export interface IFlds {
   id: number;
 }
 
+export type processOptions = {
+  fullLoad?: boolean;
+  deltaLoad?: boolean;
+};
+
+
 export type processFunctionProps = {
   content: string;
 };
@@ -40,4 +47,7 @@ export type processFunction = (content: string) => void;
 export interface IProcess {
   data: any[];
   callback: processFunction;
+  options?: processOptions
 }
+
+
