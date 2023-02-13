@@ -6,10 +6,9 @@ const getPath = () => {
   if (os.hostname() === "Mirage") {
     return "D:/BHYC/data/";
   } else {
-    return "C:/AA_CODE/data";
+    return "C:/AA_CODE/data/";
   }
 };
-const PATH: string = "D:/BHYC/data/";
 
 function saveData(data: string): void {
   const fileName = getFileName("foo", "test");

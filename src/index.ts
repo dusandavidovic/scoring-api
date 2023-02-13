@@ -1,3 +1,3 @@
 import { getApiService } from "./api/service";
 
-const apiInstance = getApiService("test01");
+const apiInstance = getApiService("series");

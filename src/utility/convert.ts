@@ -31,8 +31,7 @@ const convert2CSV = ({ data, callback }: IProcess): string => {
   ) {
     if (err) throw err;
     myCsv = csv;
-    console.log(myCsv);
-    //console.log("Handler", callback);
+    //console.log(myCsv);
     callback(csv as string);
   };
 
@@ -66,4 +65,5 @@ export function Csv() {
   return { data, toCsv, getCsv };
 }
 
-export default { convert2CSV, Csv };
+export default convert2CSV;
+//export default { convert2CSV, Csv };
