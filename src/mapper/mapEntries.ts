@@ -1,20 +1,7 @@
 import convert2CSV from "../utility/convert";
-import { IProcess, Entry, processOptions } from "../interface";
+import { IProcess, Entry } from "../interface";
 import sw from "./sw";
-import datetime from "../utility/datetime";
-
-const deltaFilter = (entries: [], options: processOptions) => {
-  if (!options.fullLoad) {
-    return entries.filter((value, index, array) => {
-      const dateString = value["DateUpdated"]
-        ? value["DateUpdated"]
-        : value["DateCreated"];
-      const ret = datetime.isLE(dateString, options.lastVersion);
-      //console.log(dateString, ret);
-      return !ret;
-    });
-  } else return entries;
-};
+import deltaFilter from "./deltaFilter";
 
 const mapProcess = (props: IProcess): string | void => {
   const { data, callback, options } = props;
@@ -23,7 +10,6 @@ const mapProcess = (props: IProcess): string | void => {
     filtered = deltaFilter(data as [], options);
   }
   const result: Entry[] = mapEntries(filtered as []);
-  //const result: Entry[] = mapEntries(data as []);
 
   const parm: IProcess = {
     data: result as Entry[],

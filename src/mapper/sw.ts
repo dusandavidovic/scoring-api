@@ -16,18 +16,6 @@ const Map: { [key: string]: any } = {
   DateUpdated: "Updated",
 };
 
-// const prepareFields = (fields: any[]): IFlds[] => {
-//   let newArr: IFlds[] = [];
-//   fields.forEach((value) => {
-//     if (value["ID"].substr(0, 5) === "Field")
-//       newArr.push({
-//         title: value["Title"],
-//         id: value["ID"],
-//       });
-//   });
-//   return newArr;
-//};
-
 const getFleet = (entry: Entry): Entry => {
   if (entry.FleetText?.substring(0, 10) === "Non-Flying") {
     if (entry.Rating && entry.Rating < 174) {
@@ -56,6 +44,5 @@ const getFleet = (entry: Entry): Entry => {
 
 export default {
   Map,
-  //prepareFields,
   getFleet,
 };

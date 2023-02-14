@@ -1,19 +1,3 @@
-// export interface IResult {
-//   firstName: string;
-//   lastName: string;
-// }
-
-// export interface IEntries {
-//   Fleet: string;
-//   Boat: string;
-//   Class: string;
-//   HelmName: string;
-//   Rating: number;
-//   FirstName: string;
-//   LastName: string;
-//   RatingFS: number;
-//   RatingNFS: number;
-// }
 export type Entry = {
   Division?: number;
   Fleet?: string;
@@ -29,11 +13,6 @@ export type Entry = {
   Created?: string;
   Updated?: string;
 };
-
-// export interface IFlds {
-//   title: string;
-//   id: number;
-// }
 
 export type processOptions = {
   formId: string;

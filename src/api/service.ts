@@ -5,8 +5,6 @@ import mapProcess from "../mapper/mapEntries";
 import datetime from "../utility/datetime";
 
 class ApiService {
-  //userId = "";
-  //formName = "";
   data = {
     entries: [],
     fields: [],
@@ -16,7 +14,6 @@ class ApiService {
   };
 
   constructor(options: processOptions) {
-    //this.formName = formName;
     if (options) {
       this.procOptions = options;
       this.procOptions.timeStamp = datetime.getTimeStamp();
@@ -51,39 +48,6 @@ class ApiService {
       console.log("getFormEntries", error);
     }
   }
-
-  // async getForms() {
-  //   try {
-  //     const response = await client.get(client.getApiUrl(this.formName, ""), {
-  //       auth: client.getAuth(),
-  //     });
-  //     this.data.entries = response.data.Entries;
-  //     return response.data;
-  //   } catch (error) {
-  //     console.log("getForms", error);
-  //   }
-  // }
-
-  // async getFormFields() {
-  //   try {
-  //     const response = await client.get(
-  //       client.getApiUrl(this.formName, "/fields"),
-  //       {
-  //         auth: client.getAuth(),
-  //       }
-  //     );
-  //     this.data.fields = response.data.Fields;
-  //   } catch (error) {
-  //     console.log("getFormFields", error);
-  //   }
-  // }
-
-  // public setUserId(id: string) {
-  //   this.userId = id;
-  // }
-  // public getUserId(): string {
-  //   return this.userId;
-  // }
 }
 
 export function getApiService(options: processOptions) {

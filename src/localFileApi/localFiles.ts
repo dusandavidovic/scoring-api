@@ -1,8 +1,6 @@
 import * as fs from "fs";
-//import dayjs from "dayjs";
 import os from "os";
 import { processFunction, processFunctionProps } from "../interface";
-//import datetime from "../utility/datetime";
 
 const getPath = () => {
   if (os.hostname() === "Mirage") {
@@ -21,9 +19,6 @@ const getFileName = (
   parm1: string | undefined,
   timeStamp?: string | undefined
 ): string => {
-  // parm1.parm2.timestamp.txt
-  //const ts = dayjs().format("YYYYMMDDhhmmss");
-  //const ts = datetime.getTimeStamp();
   return `${getPath()}${parm1}.${timeStamp}.txt`;
 };
 
@@ -39,7 +34,6 @@ function readData<Type>(fileName: string): Buffer {
 }
 
 const saveToFile: processFunction = (props: processFunctionProps) => {
-  //const { content, options } = props;
   const fileName = getFileName(props.options?.formId, props.options?.timeStamp);
   const versionFileName = getFileName(props.options?.formId, "version");
   if (props.content) {
@@ -56,18 +50,9 @@ const saveToFile: processFunction = (props: processFunctionProps) => {
     }
   }
 };
-// function saveData(data: string): void {
-//   const fileName = getFileName("foo", "test");
-//   if (data) {
-//     const content = data as unknown as NodeJS.ArrayBufferView;
-//     writeData(fileName, content);
-//     console.log("Write to file", fileName, "is completed.");
-//   }
-// }
+
 export default {
-  //saveData,
   saveToFile,
-  // writeData,
   getFileName,
   getLastTimeStamp,
 };
