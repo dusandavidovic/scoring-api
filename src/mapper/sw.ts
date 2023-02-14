@@ -12,6 +12,8 @@ const Map: { [key: string]: any } = {
   Field220: "RatingFS",
   Field221: "RatingNFS",
   Field328: "FleetText",
+  DateCreated: "Created",
+  DateUpdated: "Updated",
 };
 
 // const prepareFields = (fields: any[]): IFlds[] => {

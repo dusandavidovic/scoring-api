@@ -49,9 +49,11 @@ const saveToFile: processFunction = (props: processFunctionProps) => {
     console.log("Write to file", fileName, "is completed.");
 
     //version file
-    data = props.options?.timeStamp as unknown as NodeJS.ArrayBufferView;
-    writeData(versionFileName, data);
-    console.log("Write to Version file", versionFileName, "is completed.");
+    if (props.options?.noVersion !== true) {
+      data = props.options?.timeStamp as unknown as NodeJS.ArrayBufferView;
+      writeData(versionFileName, data);
+      console.log("Write to Version file", versionFileName, "is completed.");
+    }
   }
 };
 // function saveData(data: string): void {

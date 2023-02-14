@@ -14,13 +14,7 @@ const json2csvOptions = {
   excelBOM: true,
   trimHeaderValues: true,
   trimFieldValues: true,
-  //keys: [
-  //"Make",
-  // "Model",
-  // "Year",
-  // "Specifications.Mileage",
-  // "Specifications.Trim",
-  //],
+  keys: ["Division", "Fleet", "Boat", "Class", "HelmName", "Rating"],
 };
 
 const convert2CSV = ({ data, callback, options }: IProcess): string => {

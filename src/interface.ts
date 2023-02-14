@@ -26,6 +26,8 @@ export type Entry = {
   RatingFS?: number;
   RatingNFS?: number;
   FleetText?: string;
+  Created?: string;
+  Updated?: string;
 };
 
 // export interface IFlds {
@@ -38,6 +40,7 @@ export type processOptions = {
   fullLoad?: boolean;
   timeStamp?: string;
   lastVersion?: string;
+  noVersion?: boolean;
 };
 
 export type processFunctionProps = {
