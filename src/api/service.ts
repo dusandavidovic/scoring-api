@@ -2,59 +2,43 @@ import client from "./client";
 import local from "../localFileApi/localFiles";
 import { IProcess, processOptions } from "../interface";
 import mapProcess from "../mapper/mapEntries";
+import datetime from "../utility/datetime";
 
 class ApiService {
-  userId = "";
-  formName = "";
+  //userId = "";
+  //formName = "";
   data = {
     entries: [],
     fields: [],
   };
-  constructor(formName: string, options?: processOptions) {
-    this.formName = formName;
-    this.getFormEntries().then((result) => {
-      //this.data.entries = result.Entries;
-      //const newData = mapper.mapProcess1(result.Entries, saveData);
+  procOptions: processOptions = {
+    formId: "",
+  };
+
+  constructor(options: processOptions) {
+    //this.formName = formName;
+    if (options) {
+      this.procOptions = options;
+      this.procOptions.timeStamp = datetime.getTimeStamp();
+      //Last version/execution timestamp
+      this.procOptions.lastVersion = local.getLastTimeStamp(
+        this.procOptions.formId
+      );
+    }
+    this.getFormEntries(options.formId).then((result) => {
       const params: IProcess = {
         data: result.Entries,
-        callback: local.saveData,
-        options: options,
+        callback: local.saveToFile,
+        options: this.procOptions,
       };
-      const newData = mapProcess(params);
-      // console.log(newData);
+      mapProcess(params);
     });
   }
 
-  async getForms() {
-    try {
-      const response = await client.get(client.getApiUrl(this.formName, ""), {
-        auth: client.getAuth(),
-      });
-      this.data.entries = response.data.Entries;
-      return response.data;
-    } catch (error) {
-      console.log("getForms", error);
-    }
-  }
-
-  async getFormFields() {
+  async getFormEntries(formName: string) {
     try {
       const response = await client.get(
-        client.getApiUrl(this.formName, "/fields"),
-        {
-          auth: client.getAuth(),
-        }
-      );
-      this.data.fields = response.data.Fields;
-    } catch (error) {
-      console.log("getFormFields", error);
-    }
-  }
-
-  async getFormEntries() {
-    try {
-      const response = await client.get(
-        client.getApiUrl(this.formName, "/entries"),
+        client.getApiUrl(formName, "/entries"),
         {
           auth: client.getAuth(),
         }
@@ -68,17 +52,42 @@ class ApiService {
     }
   }
 
-  public setUserId(id: string) {
-    this.userId = id;
-  }
-  public getUserId(): string {
-    return this.userId;
-  }
+  // async getForms() {
+  //   try {
+  //     const response = await client.get(client.getApiUrl(this.formName, ""), {
+  //       auth: client.getAuth(),
+  //     });
+  //     this.data.entries = response.data.Entries;
+  //     return response.data;
+  //   } catch (error) {
+  //     console.log("getForms", error);
+  //   }
+  // }
+
+  // async getFormFields() {
+  //   try {
+  //     const response = await client.get(
+  //       client.getApiUrl(this.formName, "/fields"),
+  //       {
+  //         auth: client.getAuth(),
+  //       }
+  //     );
+  //     this.data.fields = response.data.Fields;
+  //   } catch (error) {
+  //     console.log("getFormFields", error);
+  //   }
+  // }
+
+  // public setUserId(id: string) {
+  //   this.userId = id;
+  // }
+  // public getUserId(): string {
+  //   return this.userId;
+  // }
 }
 
-export function getApiService(formName: string) {
-  const instance = new ApiService(formName);
-  //console.log(instance.getEntries());
+export function getApiService(options: processOptions) {
+  const instance = new ApiService(options);
   return instance;
 }
 
