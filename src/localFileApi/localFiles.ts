@@ -1,6 +1,6 @@
 import * as fs from "fs";
-import dayjs from "dayjs";
 import os from "os";
+import { processFunction, processFunctionProps } from "../interface";
 
 const getPath = () => {
   if (os.hostname() === "Mirage") {
@@ -9,22 +9,17 @@ const getPath = () => {
     return "C:/AA_CODE/data/";
   }
 };
-
-function saveData(data: string): void {
-  const fileName = getFileName("foo", "test");
-  if (data) {
-    const content = data as unknown as NodeJS.ArrayBufferView;
-    writeData(fileName, content);
-    console.log("Write to file", fileName, "is completed.");
-  }
-}
-
-const getFileName = (parm1: string, parm2: string): string => {
-  // parm1.parm2.timestamp.txt
-  const ts = dayjs().format("YYYYMMDDhhmmss");
-  console.log(ts);
-
-  return `${getPath()}${parm1}.${parm2}.${ts}.txt`;
+const getLastTimeStamp = (formId: string): string => {
+  const fileName = getFileName(formId, "version");
+  // const buffer = readData(fileName);
+  // return buffer.toString();
+  return readData(fileName).toString();
+};
+const getFileName = (
+  parm1: string | undefined,
+  timeStamp?: string | undefined
+): string => {
+  return `${getPath()}${parm1}.${timeStamp}.txt`;
 };
 
 function writeData<Type>(
@@ -34,8 +29,30 @@ function writeData<Type>(
   fs.writeFileSync(fileName, content);
 }
 
+function readData<Type>(fileName: string): Buffer {
+  return fs.readFileSync(fileName);
+}
+
+const saveToFile: processFunction = (props: processFunctionProps) => {
+  const fileName = getFileName(props.options?.formId, props.options?.timeStamp);
+  const versionFileName = getFileName(props.options?.formId, "version");
+  if (props.content) {
+    // entries file
+    let data = props.content as unknown as NodeJS.ArrayBufferView;
+    writeData(fileName, data);
+    console.log("Write to file", fileName, "is completed.");
+
+    //version file
+    if (props.options?.noVersion !== true) {
+      data = props.options?.timeStamp as unknown as NodeJS.ArrayBufferView;
+      writeData(versionFileName, data);
+      console.log("Write to Version file", versionFileName, "is completed.");
+    }
+  }
+};
+
 export default {
-  saveData,
-  // writeData,
-  // getFileName,
+  saveToFile,
+  getFileName,
+  getLastTimeStamp,
 };

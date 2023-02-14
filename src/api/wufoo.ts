@@ -10,10 +10,10 @@ interface Wufoo {
   format: string;
   form: Form[];
 }
-interface BasicAuth {
-  username: string;
-  password: string;
-}
+// interface BasicAuth {
+//   username: string;
+//   password: string;
+// }
 
 const bhycScorer: Wufoo = {
   accessId: "Y3VO-26SD-XJBC-RBO4",
@@ -43,21 +43,18 @@ function getUri(formName: string, endPoint: string): string {
   return localUri;
 }
 
-export function getAuthToken() {
-  //   return <BasicAuth>{
-  //     username: bhycScorer.accessId,
-  //     password: "defaultWufoo",
-  const token = Buffer.from(
-    `${bhycScorer.accessId}:${bhycScorer.password}`,
-    "utf8"
-  ).toString("base64");
-  return token;
-}
+// export function getAuthToken() {
+//   const token = Buffer.from(
+//     `${bhycScorer.accessId}:${bhycScorer.password}`,
+//     "utf8"
+//   ).toString("base64");
+//   return token;
+// }
 
 const getAccessId = () => bhycScorer.accessId;
 
 export default {
   getUri,
-  getAuthToken,
+  //getAuthToken,
   getAccessId,
 };
