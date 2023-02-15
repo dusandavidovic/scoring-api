@@ -3,10 +3,15 @@ import os from "os";
 import { processFunction, processFunctionProps } from "../interface";
 
 const getPath = () => {
-  if (os.hostname() === "Mirage") {
+  const host = os.hostname();
+  if (host === "Mirage") {
     return "D:/BHYC/data/";
   } else {
-    return "C:/AA_CODE/data/";
+    if (host === "LAPTOP-T440S") {
+      return "C:/aa_code/data/";
+    } else {
+      return "C:/AA_CODE/data/"; //river laptop
+    }
   }
 };
 const getLastTimeStamp = (formId: string): string => {
