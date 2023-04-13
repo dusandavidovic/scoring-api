@@ -22,8 +22,12 @@ const bhycScorer: Wufoo = {
   format: "json",
   form: [
     {
-      name: "series",
+      name: "series2019",
       hash: "m14y5e3f0vu09cw",
+    },
+    {
+      name: "series2023",
+      hash: "s1vgy62f0qsua2y",
     },
     {
       name: "rocks",

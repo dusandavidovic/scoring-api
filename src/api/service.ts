@@ -18,9 +18,10 @@ class ApiService {
       this.procOptions = options;
       this.procOptions.timeStamp = datetime.getTimeStamp();
       //Last version/execution timestamp
-      this.procOptions.lastVersion = local.getLastTimeStamp(
-        this.procOptions.formId
-      );
+      if (!options.fullLoad)
+        this.procOptions.lastVersion = local.getLastTimeStamp(
+          this.procOptions.formId
+        );
     }
     this.getFormEntries(options.formId).then((result) => {
       const params: IProcess = {

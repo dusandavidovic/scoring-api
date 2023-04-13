@@ -11,8 +11,7 @@ const getPath = () => {
 };
 const getLastTimeStamp = (formId: string): string => {
   const fileName = getFileName(formId, "version");
-  // const buffer = readData(fileName);
-  // return buffer.toString();
+
   return readData(fileName).toString();
 };
 const getFileName = (
